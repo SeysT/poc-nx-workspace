@@ -1,0 +1,28 @@
+{
+  "root": "apps/padoa-e2e",
+  "sourceRoot": "apps/padoa-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/padoa-e2e/cypress.json",
+        "devServerTarget": "padoa:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "padoa:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/padoa-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["padoa"]
+}

@@ -1,0 +1,91 @@
+{
+  "projectType": "application",
+  "root": "apps/padoa",
+  "sourceRoot": "apps/padoa/src",
+  "prefix": "poc-nx-workspace",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/padoa",
+        "index": "apps/padoa/src/index.html",
+        "main": "apps/padoa/src/main.ts",
+        "polyfills": "apps/padoa/src/polyfills.ts",
+        "tsConfig": "apps/padoa/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": ["apps/padoa/src/favicon.ico", "apps/padoa/src/assets"],
+        "styles": ["apps/padoa/src/styles.scss"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/padoa/src/environments/environment.ts",
+              "with": "apps/padoa/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "padoa:build:production"
+        },
+        "development": {
+          "browserTarget": "padoa:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "padoa:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/padoa/src/**/*.ts",
+          "apps/padoa/src/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/padoa"],
+      "options": {
+        "jestConfig": "apps/padoa/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

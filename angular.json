@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "projects": {
+    "padoa": "apps/padoa",
+    "padoa-e2e": "apps/padoa-e2e"
+  }
+}
